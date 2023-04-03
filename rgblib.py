@@ -1,3 +1,14 @@
+# Circutpython lib for non-RGB Grove - 16x2 LCD I2C display
+# https://wiki.seeedstudio.com/Grove-16x2_LCD_Series/
+# Workin with v2.0 version of the display
+# Rewrited from original library from seeedstudio
+# Usage:
+# lcd = RGB_LCD(cols=16, lines=2, dotsize=8, wire=i2c)
+# lcd.clear()
+# lcd.println("Hello World!")
+# Verion: 0.1
+# Author: @czarny445
+
 import board
 import busio
 import time
