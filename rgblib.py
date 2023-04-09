@@ -139,7 +139,6 @@ class RGB_LCD:
     def __writeWithEndlines(self, value):
         """ Prints a string to the LCD. Gets \r\n \r and \n as a line break. """
         lines = self._newLineRegEx.split(value)
-        print("Lines: " + str(lines))
         for line in lines:            
             if line != "":
                 self.__write(line)
