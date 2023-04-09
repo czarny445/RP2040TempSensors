@@ -140,7 +140,6 @@ class RGB_LCD:
         """ Prints a string to the LCD. Gets \r\n \r and \n as a line break. """
         lines = self._newLineRegEx.split(value)
         for line in lines:
-            print("currline: " + str(self._currline) + " numlines: " + str(self._numlines))
             self.setCursor(0, self._currline)
             self.__write(line)
             self._currline += 1
