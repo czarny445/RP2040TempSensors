@@ -1,6 +1,6 @@
 # Circutpython lib for non-RGB Grove - 16x2 LCD I2C display
 # https://wiki.seeedstudio.com/Grove-16x2_LCD_Series/
-# Workin with v2.0 version of the display
+# Working with v2.0 version of the display
 # Rewrited from original library from seeedstudio
 # Usage:
 # lcd = RGB_LCD(cols=16, lines=2, dotsize=8, wire=i2c)
@@ -139,13 +139,16 @@ class RGB_LCD:
     def __writeWithEndlines(self, value):
         """ Prints a string to the LCD. Gets \r\n \r and \n as a line break. """
         lines = self._newLineRegEx.split(value)
-        for line in lines:
-            self.setCursor(0, self._currline)
-            self.__write(line)
-            self._currline += 1
-            if self._currline == self._numlines:
-                self._currline = 0
-                self.home()
+        print("Lines: " + str(lines))
+        for line in lines:            
+            if line != "":
+                self.__write(line)
+                if len(lines) > 1:
+                    self._currline = (self._currline + 1) % self._numlines
+                    self.setCursor(0, self._currline)
+                
+
+            
     def print(self, value):
         """ Prints a string to the LCD."""
         self.__writeWithEndlines(value)

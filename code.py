@@ -33,26 +33,22 @@ for i in deviceIdsOnBus2:
 
 lcd = RGB_LCD(cols=16, lines=2, dotsize=8, wire=i2c)
 lcd.clear()
-lcd.cursor()
+lcd.home()
 
 # Main loop to print the temperature every second.
 while True:
     temperaturesMap = dict()
+    lcd.clear()
     for i in range(len(dsDevicesOnBus1)):
         hexId = hexlify(deviceIdsOnBus1[i].rom)
         temperaturesMap[hexId] = dsDevicesOnBus1[i].temperature
-        lcd.clear()
-        lcd.setCursor(0,0)
-        lcd.__write("Temp: {0:0.3f}C".format(temperaturesMap[hexId]))
+        lcd.println("Temp1: {0:0.3f}C".format(temperaturesMap[hexId]))
         time.sleep(2)
     for i in range(len(dsDevicesOnBus2)):
         hexId = hexlify(deviceIdsOnBus2[i].rom)
         temperaturesMap[hexId] = dsDevicesOnBus2[i].temperature
-        lcd.clear()
-        lcd.setCursor(0,0)
-        lcd.__write("Temp: {0:0.3f}C".format(temperaturesMap[hexId]))
+        lcd.println("Temp2: {0:0.3f}C".format(temperaturesMap[hexId]))
         time.sleep(2)
     print(json.dumps(temperaturesMap))
     time.sleep(2)
-    
 
